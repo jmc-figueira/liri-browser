@@ -14,9 +14,12 @@ ApplicationWindow {
 
     title: "Browser"
     visible: true
-
+    flags: Qt.CustomizeWindowHint
     width: 1000
     height: 640
+
+    Behavior on x { NumberAnimation { duration : 50 } }
+    Behavior on y { NumberAnimation { duration : 50 } }
 
     theme {
         id: theme
@@ -120,6 +123,21 @@ ApplicationWindow {
     initialPage: Rectangle {
         id: page
 
+        MouseArea {
+            anchors.fill: parent
+            property variant clickPos: "1,1"
+
+            onPressed: {
+                clickPos  = Qt.point(mouse.x,mouse.y)
+            }
+
+            onPositionChanged: {
+                var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
+                root.x += delta.x;
+                root.y += delta.y;
+            }
+        }
+
         View {
             visible: !root.fullscreen
             id: titlebar
@@ -130,7 +148,7 @@ ApplicationWindow {
 
             Flickable {
                 id: flickable
-                width: parent.width
+                width: parent.width - Units.dp(80)
                 height: root._tab_height
                 contentHeight: height
                 contentWidth: tab_row.width + btn_add_tab.width + Units.dp(100)
@@ -609,6 +627,21 @@ ApplicationWindow {
         }
     }
 
+    Row {
+        id: window_actions
+        spacing: Units.dp(5)
+        anchors {
+            top: parent.top
+            right: parent.right
+            margins: Units.dp(5)
+        }
+
+        IconButton {
+            id: window_close
+            onClicked: Qt.quit()
+            iconName: "navigation/close"
+        }
+    }
 
     Component.onCompleted: {
         // Profile handling
