@@ -124,6 +124,14 @@
         <source>Add to dash</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View source</source>
+        <translation type="unfinished">Seitenquelltext ansehen</translation>
+    </message>
 </context>
 <context>
     <name>BrowserWindow</name>
@@ -393,6 +401,14 @@
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Material window frame (EXPERIMENTAL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDrawer</name>
@@ -450,6 +466,24 @@
     <message>
         <source>Settings</source>
         <translation type="unfinished">Einstellungen</translation>
+    </message>
+</context>
+<context>
+    <name>SitesColorList</name>
+    <message>
+        <source>Sites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new color</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SitesColorPage</name>
+    <message>
+        <source>Sites color chooser</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
