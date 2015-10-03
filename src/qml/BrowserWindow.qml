@@ -29,6 +29,9 @@ MaterialWindow {
 
     property bool customFrame: false
 
+    property bool snappedRight: false
+    property bool snappedLeft: false
+
     property Settings settings: Settings {
         id: settings
         property alias x: root.x
@@ -81,6 +84,13 @@ MaterialWindow {
     property int lastTabUID: 0
 
     property ListModel tabsModel: ListModel {}
+
+    property ListModel sitesColorModel: ListModel {
+        ListElement {
+            domain: "youtube.com"
+            color: "red"
+        }
+    }
 
     property bool activeTabInEditMode: false
     property var activeTabInEditModeItem
@@ -477,6 +487,8 @@ MaterialWindow {
     SettingsPage { id: settingsPage }
 
     TabsListPage { id: tabsListPage }
+
+    SitesColorPage { id: sitesColorPage }
 
     Snackbar {
         id: snackbar

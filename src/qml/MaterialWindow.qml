@@ -1,3 +1,5 @@
+// Code modified from QML-Material <http://papyros.io>
+
 import QtQuick 2.0
 import QtQuick.Controls 1.2 as Controls
 import QtQuick.Window 2.0
@@ -7,33 +9,11 @@ import QtGraphicalEffects 1.0
 
 Controls.ApplicationWindow {
     id: __window
-    /*!
-       Set to \c true to include window decorations in your app's toolbar and hide
-       the regular window decorations header.
-     */
     property bool clientSideDecorations
     flags:   root.app.customFrame ? Qt.FramelessWindowHint : Qt.Window
     color: "transparent"
-    /*!
-       \qmlproperty Page initialPage
-
-       The initial page shown when the application starts.
-     */
     property alias initialPage: __pageStack.initialItem
-
-    /*!
-       \qmlproperty PageStack pageStack
-
-       The \l PageStack used for controlling pages and transitions between pages.
-     */
     property alias pageStack: __pageStack
-
-    /*!
-       \qmlproperty AppTheme theme
-
-       A grouped property that allows the application to customize the the primary color, the
-       primary dark color, and the accent color. See \l Theme for more details.
-     */
     property alias theme: __theme
 
     AppTheme {
@@ -127,13 +107,6 @@ Controls.ApplicationWindow {
         }
     }
 
-    /*!
-       Show an error in a dialog, with the specified secondary button text (defaulting to "Close")
-       and an optional retry button.
-
-       Returns a promise which will be resolved if the user taps retry and rejected if the user
-       cancels the dialog.
-     */
     function showError(title, text, secondaryButtonText, retry) {
         if (errorDialog.promise) {
             errorDialog.promise.reject()
@@ -179,8 +152,6 @@ Controls.ApplicationWindow {
             }
         });
 
-        // Nasty hack because singletons cannot import the module they were declared in, so
-        // the grid unit cannot be defined in either Device or Units, because it requires both.
         Units.gridUnit = Qt.binding(function() {
             return Device.type === Device.phone || Device.type === Device.phablet
                     ? Units.dp(48) : Device.type == Device.tablet ? Units.dp(56) : Units.dp(64)
@@ -192,16 +163,16 @@ Controls.ApplicationWindow {
         states: [
             State {
                 name: "2"
-                PropertyChanges { target: resizeArea; anchors.margins: root.app.customFrame ? 5 : 0; enabled: true }
-                PropertyChanges { target: __pageStack; anchors.margins: root.app.customFrame ? 10 : 0 }
-                PropertyChanges { target: __toolbar; anchors.margins: root.app.customFrame ? 10 : 0 }
-                PropertyChanges { target: systemBar; anchors.margins: root.app.customFrame ? 10 : 0 }
+                PropertyChanges { target: resizeArea; anchors.margins: root.app.customFrame && !root.snappedRight && !root.snappedLeft ? 5 : 0; enabled: true }
+                PropertyChanges { target: __pageStack; anchors.margins: root.app.customFrame && !root.snappedRight && !root.snappedLeft  ? 10 : 0 }
+                PropertyChanges { target: __toolbar; anchors.margins: root.app.customFrame && !root.snappedRight  && !root.snappedLeft ? 10 : 0 }
+                PropertyChanges { target: systemBar; anchors.margins: root.app.customFrame && !root.snappedRight  && !root.snappedLeft ? 10 : 0 }
                 PropertyChanges { target: outGlow; visible: true }
             },
             State {
                 name: "4"
                 PropertyChanges { target: resizeArea; anchors.margins: 0; enabled: false }
-                PropertyChanges { target: __pageStack; anchors.margins: 0; anchors.topMargin: systemBar.height }
+                PropertyChanges { target: __pageStack; anchors.margins: 0; anchors.topMargin: root.app.customFrame ? systemBar.height : 0}
                 PropertyChanges { target: systemBar; anchors.margins: 0 }
                 PropertyChanges { target: __toolbar; anchors.margins: 0 }
                 PropertyChanges { target: outGlow; visible: false }
