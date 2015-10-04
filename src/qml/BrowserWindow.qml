@@ -33,6 +33,11 @@ MaterialWindow {
     property bool snappedRight: false
     property bool snappedLeft: false
 
+    property bool tabsListIsOpened: false
+    property bool customSitesColorsIsOpened: false
+
+    property bool reduceTabsSizes: (tabWidth * tabsModel.count) > root.width - 200
+
     property Settings settings: Settings {
         id: settings
         property alias x: root.x
@@ -47,7 +52,7 @@ MaterialWindow {
     /* Style Settings */
     property color tabBackgroundColor: "#f1f1f1"
     property int tabHeight: Units.dp(40)
-    property int tabWidth: Units.dp(200)
+    property int tabWidth: !reduceTabsSizes ? Units.dp(200) : Units.dp(50)
     property int tabWidthEdit: Units.dp(400)
     property int tabsSpacing: Units.dp(1)
     property int titlebarHeight: Units.dp(148)
@@ -85,13 +90,6 @@ MaterialWindow {
     property int lastTabUID: 0
 
     property ListModel tabsModel: ListModel {}
-
-    property ListModel sitesColorModel: ListModel {
-        ListElement {
-            domain: "youtube.com"
-            color: "#E62117"
-        }
-    }
 
     property bool activeTabInEditMode: false
     property var activeTabInEditModeItem
@@ -158,11 +156,16 @@ MaterialWindow {
         if(domains[domains_l-1].indexOf("/") != -1)
             domains[domains_l-1] = domains[domains_l-1].substring(0,domains[domains_l-1].indexOf("/"))
         var domain = domains.join(".")
-        var nb=sitesColorModel.count,i,result = "none"
+        var nb=presetSitesColorsModel.count,i,result = "none"
         console.log(domain)
         for(i=0;i<nb;i++) {
-            if (sitesColorModel.get(i).domain == domain)
-                result=sitesColorModel.get(i).color
+            if (presetSitesColorsModel.get(i).domain == domain)
+                result=presetSitesColorsModel.get(i).color
+        }
+        nb=customSitesColorsModel.count;
+        for(i=0;i<nb;i++) {
+            if (customSitesColorsModel.get(i).domain == domain)
+                result=customSitesColorsModel.get(i).color
         }
         return result
     }
