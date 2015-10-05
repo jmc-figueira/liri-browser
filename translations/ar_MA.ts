@@ -124,39 +124,39 @@
         <translation type="unfinished">الإعدادات</translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWebView.qml" line="286"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="294"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWebView.qml" line="320"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="328"/>
         <source>View source</source>
         <translation type="unfinished">Afficher le code source</translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWebView.qml" line="347"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="355"/>
         <source>Open in new tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWebView.qml" line="357"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="365"/>
         <source>Open in new window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWebView.qml" line="367"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="375"/>
         <source>Copy URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWebView.qml" line="294"/>
-        <location filename="../src/qml/BrowserWebView.qml" line="377"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="302"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="385"/>
         <source>Add to bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWebView.qml" line="308"/>
-        <location filename="../src/qml/BrowserWebView.qml" line="391"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="316"/>
+        <location filename="../src/qml/BrowserWebView.qml" line="399"/>
         <source>Add to dash</source>
         <translation type="unfinished">أضف إلى لوحة التحكم</translation>
     </message>
@@ -205,44 +205,44 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWindow.qml" line="196"/>
+        <location filename="../src/qml/BrowserWindow.qml" line="219"/>
         <source>Added website &quot;%1&quot; to dash</source>
         <extracomment>%1 is a title</extracomment>
         <translation type="unfinished">تم إضافة الموقع &quot;%1&quot; إلى لوحة التحكم</translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWindow.qml" line="445"/>
+        <location filename="../src/qml/BrowserWindow.qml" line="468"/>
         <source>Removed bookmark %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWindow.qml" line="448"/>
+        <location filename="../src/qml/BrowserWindow.qml" line="471"/>
         <source>Added bookmark &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWindow.qml" line="500"/>
+        <location filename="../src/qml/BrowserWindow.qml" line="523"/>
         <source>Reopen</source>
         <translation>إعادة الفتح</translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWindow.qml" line="515"/>
+        <location filename="../src/qml/BrowserWindow.qml" line="538"/>
         <source>This Connection Is Untrusted</source>
         <translation>هذا الإتصال غير أمن</translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWindow.qml" line="517"/>
+        <location filename="../src/qml/BrowserWindow.qml" line="540"/>
         <source>You are about to securely connect to %1 but we can&apos;t confirm that your connection is secure because this site&apos;s identity can&apos;t be verified.</source>
         <extracomment>%1 is an URL</extracomment>
         <translation>أنت على وشك الإتصال بـ %1 بشكل أمن, لكن لا يمكننا تأكيد أمان الإتصال لأن معرف الموقع لا يمكن التحقق منه.</translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWindow.qml" line="518"/>
+        <location filename="../src/qml/BrowserWindow.qml" line="541"/>
         <source>Continue anyway</source>
         <translation>الإستمرار على إي حال</translation>
     </message>
     <message>
-        <location filename="../src/qml/BrowserWindow.qml" line="519"/>
+        <location filename="../src/qml/BrowserWindow.qml" line="542"/>
         <source>Leave page</source>
         <translation>مغادرة الصفحة</translation>
     </message>
@@ -327,57 +327,57 @@
 <context>
     <name>NewTabPage</name>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="15"/>
+        <location filename="../src/qml/NewTabPage.qml" line="16"/>
         <source>Nothing here, yet</source>
         <translation>لا يوجد شيء هنا, بعد</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="27"/>
+        <location filename="../src/qml/NewTabPage.qml" line="28"/>
         <source>You can add items by clicking on the menu item &quot;Add to dash&quot; on any website or by right clicking on a bookmark.</source>
         <translation>يمكنك إضافة عناصرٍ بضغط على &quot;أضف إلى لوحة التحكم&quot; في القائمة في أي موقع أو عبر الضغط على العلامات.</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="160"/>
+        <location filename="../src/qml/NewTabPage.qml" line="161"/>
         <source>Edit</source>
         <translation>حرر</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="169"/>
+        <location filename="../src/qml/NewTabPage.qml" line="170"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="207"/>
+        <location filename="../src/qml/NewTabPage.qml" line="208"/>
         <source>Edit item</source>
         <translation>حرر العنصر</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="221"/>
+        <location filename="../src/qml/NewTabPage.qml" line="222"/>
         <source>Title</source>
         <translation>عنوان</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="229"/>
+        <location filename="../src/qml/NewTabPage.qml" line="230"/>
         <source>URL</source>
         <translation>عنوان الموقع</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="238"/>
+        <location filename="../src/qml/NewTabPage.qml" line="239"/>
         <source>Icon URL</source>
         <translation>عنوان الأيقونة</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="247"/>
+        <location filename="../src/qml/NewTabPage.qml" line="248"/>
         <source>Background color</source>
         <translation>لون الخلفية</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="259"/>
+        <location filename="../src/qml/NewTabPage.qml" line="260"/>
         <source>Cancel</source>
         <translation>إلغاء</translation>
     </message>
     <message>
-        <location filename="../src/qml/NewTabPage.qml" line="274"/>
+        <location filename="../src/qml/NewTabPage.qml" line="275"/>
         <source>Apply</source>
         <translation>تطبيق</translation>
     </message>
@@ -398,77 +398,87 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../src/qml/Settings.qml" line="31"/>
+        <location filename="../src/qml/Settings.qml" line="34"/>
         <source>Settings</source>
         <translation type="unfinished">الإعدادات</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="61"/>
+        <location filename="../src/qml/Settings.qml" line="66"/>
         <source>General</source>
         <translation type="unfinished">عام</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="79"/>
+        <location filename="../src/qml/Settings.qml" line="89"/>
         <source>Start page</source>
         <translation type="unfinished">صفحة البداية</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="118"/>
+        <location filename="../src/qml/Settings.qml" line="129"/>
         <source>Appearance</source>
         <translation type="unfinished">المظهر</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="134"/>
+        <location filename="../src/qml/Settings.qml" line="147"/>
         <source>Enable dashboard</source>
         <translation type="unfinished">تفعيل لوحة التحكم</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="155"/>
+        <location filename="../src/qml/Settings.qml" line="170"/>
         <source>Integrated addressbars</source>
         <translation type="unfinished">شريط العناوين مدمج</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="175"/>
+        <location filename="../src/qml/Settings.qml" line="192"/>
         <source>Colorize the entire tab and toolbar</source>
         <translation type="unfinished">تلوين كل التبويب و شريط الأدوات</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="195"/>
+        <location filename="../src/qml/Settings.qml" line="214"/>
+        <source>Use custom sites colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qml/Settings.qml" line="248"/>
         <source>Material window frame (EXPERIMENTAL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="320"/>
+        <location filename="../src/qml/Settings.qml" line="279"/>
+        <source>Dark theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qml/Settings.qml" line="409"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="329"/>
+        <location filename="../src/qml/Settings.qml" line="419"/>
         <source>Current Browser Version: 0.3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="216"/>
+        <location filename="../src/qml/Settings.qml" line="271"/>
         <source>Theme</source>
         <translation type="unfinished">سمة</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="223"/>
+        <location filename="../src/qml/Settings.qml" line="324"/>
         <source>Primary Color</source>
         <translation type="unfinished">اللون الأولي</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="244"/>
+        <location filename="../src/qml/Settings.qml" line="346"/>
         <source>Accent Color</source>
         <translation type="unfinished">لون اللعجة</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="351"/>
+        <location filename="../src/qml/Settings.qml" line="443"/>
         <source>Save</source>
         <translation type="unfinished">حفظ</translation>
     </message>
     <message>
-        <location filename="../src/qml/Settings.qml" line="369"/>
+        <location filename="../src/qml/Settings.qml" line="462"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -547,12 +557,17 @@
 <context>
     <name>SitesColorList</name>
     <message>
-        <location filename="../src/qml/SitesColorList.qml" line="18"/>
-        <source>Sites</source>
+        <location filename="../src/qml/SitesColorList.qml" line="20"/>
+        <source>Presets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/SitesColorList.qml" line="43"/>
+        <location filename="../src/qml/SitesColorList.qml" line="72"/>
+        <source>Custom (can overwrite presets)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qml/SitesColorList.qml" line="134"/>
         <source>Add new color</source>
         <translation type="unfinished"></translation>
     </message>

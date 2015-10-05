@@ -409,6 +409,14 @@
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use custom sites colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark theme</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDrawer</name>
@@ -471,11 +479,15 @@
 <context>
     <name>SitesColorList</name>
     <message>
-        <source>Sites</source>
+        <source>Add new color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add new color</source>
+        <source>Presets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom (can overwrite presets)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
