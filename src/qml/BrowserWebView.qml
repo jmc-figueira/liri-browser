@@ -205,7 +205,15 @@ Item {
 
          onLinkHovered: {
              clickDetector.checkMenu(hoveredUrl)
+             getPageTitle(hoveredUrl, function(titl){
+                 if(titl != "")
+                    titleTooltip.open(titl)
+             })
          }
+    }
+
+    Snackbar{
+        id: titleTooltip
     }
 
     MouseArea {
