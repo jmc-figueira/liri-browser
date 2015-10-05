@@ -12,6 +12,7 @@ Rectangle {
     property bool mobileMode: width < Units.dp(640)
     property string textColor: root.app.darkTheme ? Theme.dark.textColor : Theme.light.textColor
     color: root.app.darkTheme ? root.app.darkThemeColor : "white"
+    z: -20
 
     Flickable {
         id: flickable
@@ -179,6 +180,29 @@ Rectangle {
             }
 
             ListItem.Standard {
+                visible: !root.mobile
+                Row {
+                    anchors.fill: parent
+                    spacing: Units.dp(12)
+                    CheckBox {
+                        id: chbAllowReducingTabsSizes
+                        darkBackground: root.app.darkTheme
+                        checked: root.app.allowReducingTabsSizes
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    Label {
+                        text: qsTr("Responsive tabs (EXPERIMENTAL)")
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pixelSize: Units.dp(16)
+                        color: settingsRoot.textColor
+                    }
+                }
+                onClicked: {
+                    chbAllowReducingTabsSizes.checked = !chbAllowReducingTabsSizes.checked
+                }
+            }
+
+            ListItem.Standard {
                 Row {
                     anchors.fill: parent
                     spacing: Units.dp(12)
@@ -223,8 +247,7 @@ Rectangle {
                           verticalCenter: parent.verticalCenter
                         }
                         onClicked: {
-                            root.customSitesColorsIsOpened = true
-                            pageStack.push(sitesColorPage)
+                            addTab("liri://settings-sites-colors")
                         }
                     }
 
@@ -254,6 +277,57 @@ Rectangle {
                 }
                 onClicked: {
                     chbCustomFrame.checked = !chbCustomFrame.checked
+                }
+            }
+            ListItem.Standard  {
+                id:bookmarksBarToogle
+                text: qsTr('Bookmarks bar')
+                textColor: settingsRoot.textColor
+                Switch {
+                    id: swBookmarksBar
+                    checked: root.app.bookmarksBar
+                    darkBackground: root.app.darkTheme
+                    anchors {
+                            top: parent.top
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                    }
+                }
+            }
+            ListItem.Standard {
+                id: bookmarksBarOptions
+                visible: swBookmarksBar.checked
+                height: 120
+                anchors{
+                    left: parent.left
+                    margins: 20
+                }
+                ExclusiveGroup { id: bookmarksOptionGroup }
+                Column {
+                    spacing: 0
+                    RadioButton {
+                        id: rdBookmarksBarAlwaysOn
+                        checked: root.app.bookmarksBarAlwaysOn
+                        text: "Always on"
+                        canToggle: true
+                        exclusiveGroup: bookmarksOptionGroup
+                    }
+
+                    RadioButton {
+                        id: rdBookmarksBarOnlyOnDash
+                        text: "Only on dashboard"
+                        checked: root.app.bookmarksBarOnlyOnDash
+                        canToggle: true
+                        exclusiveGroup: bookmarksOptionGroup
+                    }
+
+                    RadioButton {
+                        id: rdBookmarksBarNotOnDash
+                        text: "Everywhere except on dashboard"
+                        checked: !root.app.bookmarksBarOnlyOnDash && !root.app.bookmarksBarAlwaysOn
+                        canToggle: true
+                        exclusiveGroup: bookmarksOptionGroup
+                    }
                 }
             }
 
@@ -455,6 +529,10 @@ Rectangle {
                     root.app.customFrame = chbCustomFrame.checked;
                     root.app.darkTheme = rdDarkThemeAlwaysOn.checked ? swDarkTheme.checked : root.app.isNight
                     root.app.customSitesColors = chbCustomSitesColors.checked
+                    root.app.bookmarksBar = swBookmarksBar.checked
+                    root.app.bookmarksBarAlwaysOn = rdBookmarksBarAlwaysOn.checked
+                    root.app.bookmarksBarOnlyOnDash = rdBookmarksBarOnlyOnDash.checked
+                    root.app.allowReducingTabsSizes = chbAllowReducingTabsSizes.checked
                     drawer.close();
                 }
             }

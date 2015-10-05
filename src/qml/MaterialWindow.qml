@@ -50,6 +50,21 @@ Controls.ApplicationWindow {
         anchors.margins: 10
     }
 
+    SystemButtons {
+        id: sysbuttons
+        z:90
+        color: bookmarksDrawer.visible || downloadsDrawer.visible || historyDrawer.visible ? "transparent" : systemBar.color
+        onShowMinimized: root.showMinimized();
+        onShowMaximized: root.showMaximized();
+        onShowNormal: root.showNormal();
+        onClose: root.close();
+        anchors {
+            right: parent.right
+            top: parent.top
+            margins: 10
+        }
+    }
+
     PageStack {
         id: __pageStack
         anchors {
@@ -179,6 +194,7 @@ Controls.ApplicationWindow {
                 PropertyChanges { target: __pageStack; anchors.margins: root.app.customFrame && !root.snappedRight && !root.snappedLeft  ? 10 : 0 }
                 PropertyChanges { target: __toolbar; anchors.margins: root.app.customFrame && !root.snappedRight  && !root.snappedLeft ? 10 : 0 }
                 PropertyChanges { target: systemBar; anchors.margins: root.app.customFrame && !root.snappedRight  && !root.snappedLeft ? 10 : 0 }
+                PropertyChanges { target: sysbuttons; anchors.margins: 10 }
                 PropertyChanges { target: outGlow; visible: true }
             },
             State {
@@ -186,6 +202,7 @@ Controls.ApplicationWindow {
                 PropertyChanges { target: resizeArea; anchors.margins: 0; enabled: false }
                 PropertyChanges { target: __pageStack; anchors.margins: 0; anchors.topMargin: root.app.customFrame ? systemBar.height : 0}
                 PropertyChanges { target: systemBar; anchors.margins: 0 }
+                PropertyChanges { target: sysbuttons; anchors.margins: 0 }
                 PropertyChanges { target: __toolbar; anchors.margins: 0 }
                 PropertyChanges { target: outGlow; visible: false }
             }

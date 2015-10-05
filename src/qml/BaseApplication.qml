@@ -34,7 +34,14 @@ Item {
     property bool integratedAddressbars: false
     property bool tabsEntirelyColorized: false
 
+    property bool allowReducingTabsSizes: false
+
     property bool newTabPage: true
+
+    property ListModel bookmarksModel: ListModel {
+        id: bookmarksModel
+        dynamicRoles: true
+    }
 
     property ListModel historyModel: ListModel {
         id: historyModel
@@ -61,8 +68,12 @@ Item {
     property string sitesColorsPresets: "[ \
             {'domain':'facebook.com', 'color': '#3b5998'} , \
             {'domain':'linkedin.com', 'color': '#646464'} , \
-            {'domain':'twitter.com', 'color': '#00aced'} \
+            {'domain':'twitter.com', 'color': '#00aced'} , \
+            {'domain':'github.com', 'color': '#f5f5f5'} \
         ]"
+    property bool bookmarksBar: true
+    property bool bookmarksBarAlwaysOn: false
+    property bool bookmarksBarOnlyOnDash: true
 
     property QtObject settings: Settings {
         property alias homeUrl: application.homeUrl
@@ -79,6 +90,10 @@ Item {
         property alias tabsEntirelyColorized: application.tabsEntirelyColorized
         property alias customFrame: application.customFrame
         property alias darkTheme: application.darkTheme
+        property alias bookmarksBar: application.bookmarksBar
+        property alias bookmarksBarAlwaysOn: application.bookmarksBarAlwaysOn
+        property alias bookmarksBarOnlyOnDash: application.bookmarksBarOnlyOnDash
+        property alias allowReducingTabsSizes: application.allowReducingTabsSizes
     }
 
     Component.onCompleted: {
@@ -117,18 +132,20 @@ Item {
             application.customSitesColorsModel.append(application.settings.customsitescolors[z])
 
         // Load the dashboard model
-        for (var i=0; i<application.settings.dashboard.length; i++){
-            var item = application.settings.dashboard[i];
-            application.dashboardModel.append(item);
-        }
+        for (var i=0; i<application.settings.dashboard.length; i++)
+            application.dashboardModel.append(application.settings.dashboard[i]);
+
+        // Load the bookmarks model
+        for (var i=0; i<application.settings.bookmarks.length; i++)
+            application.bookmarksModel.append(application.settings.bookmarks[i]);
     }
 
     Component.onDestruction: {
         settings.bookmarks = application.bookmarks;
 
         // Save the browser history
-        var history = [];
-        for (var i=0; i<application.historyModel.count; i++){
+        var history = [], hM_l = application.historyModel.count;
+        for (var i=0; i<hM_l; i++){
             var item = application.historyModel.get(i);
             if (item.type !== "date")
                 history.push({"title": item.title, "url": item.url, "faviconUrl": item.faviconUrl, "date": item.date, "type": item.type, "color": item.color});
@@ -136,17 +153,17 @@ Item {
         application.settings.history = history;
 
         // Save the dashboard model
-        var dashboard = [];
-        for (var i=0; i<application.dashboardModel.count; i++){
-            var item = application.dashboardModel.get(i);
+        var dashboard = [], dM_l = application.dashboardModel.count;
+        for (i=0; i<dM_l; i++){
+            item = application.dashboardModel.get(i);
             dashboard.push({"title": item.title, "url": item.url, "iconUrl": item.iconUrl, "bgColor": item.bgColor, "fgColor": item.fgColor, "uid": item.uid})
         }
         application.settings.dashboard = dashboard;
 
         // Save sites color model
-        var customsitescolors = [];
-        for (var i=0; i<application.customSitesColorsModel.count; i++){
-            var item = application.customSitesColorsModel.get(i);
+        var customsitescolors = [], cscM_l = application.customSitesColorsModel.count;
+        for (i=0; i<cscM_l; i++){
+             item = application.customSitesColorsModel.get(i);
             customsitescolors.push({"domain": item.domain, "color": item.color})
         }
         application.settings.customsitescolors = customsitescolors;
