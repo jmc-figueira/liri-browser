@@ -205,15 +205,27 @@ Item {
 
          onLinkHovered: {
              clickDetector.checkMenu(hoveredUrl)
-             getPageTitle(hoveredUrl, function(titl){
-                 if(titl != "")
-                    titleTooltip.open(titl)
-             })
+             toolTipTimer.hintUrl = hoveredUrl
+             toolTipTimer.start()
          }
     }
 
     Snackbar{
         id: titleTooltip
+    }
+
+    Timer{
+        property string hintUrl: ""
+        id: toolTipTimer
+        interval: 500
+        onTriggered:{
+            if(hintUrl != ""){
+                getPageTitle(hintUrl, function(titl){
+                    if(titl != "")
+                        titleTooltip.open(titl)
+                })
+            }
+        }
     }
 
     MouseArea {
@@ -250,6 +262,11 @@ Item {
 
         onReleased:
             hoverUrl = ""
+
+        onPositionChanged:{
+            toolTipTimer.hintUrl = ""
+            toolTipTimer.stop()
+        }
     }
 
     NewTabPage {
