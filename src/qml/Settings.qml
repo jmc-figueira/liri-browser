@@ -95,6 +95,52 @@ Rectangle {
             ListItem.Standard {
                 text: ""
                 height: Units.dp(60)
+                Row {
+                    id: startPageOptionSettings
+                    width: !mobileMode ? parent.width/2 - Units.dp(60) : parent.width - Units.dp(60)
+                    spacing: Units.dp(0)
+                    ExclusiveGroup {
+                        id: optionRadioGroup
+                    }
+                    RadioButton {
+                        id: newPageOption
+                        checked: root.app.integratedAddressbars
+                        anchors.verticalCenter: parent.verticalCenter
+                        exclusiveGroup: optionRadioGroup
+                    }
+                    Label {
+                        text: qsTr("Open empty tab")
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pixelSize: Units.dp(16)
+                    }
+                    RadioButton {
+                        id: startPageOption
+                        checked: root.app.integratedAddressbars
+                        anchors.verticalCenter: parent.verticalCenter
+                        exclusiveGroup: optionRadioGroup
+                    }
+                    Label {
+                        text: qsTr("Open start page")
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pixelSize: Units.dp(16)
+                    }
+                    RadioButton {
+                        id: previousSessionOption
+                        checked: root.app.integratedAddressbars
+                        anchors.verticalCenter: parent.verticalCenter
+                        exclusiveGroup: optionRadioGroup
+                    }
+                    Label {
+                        text: qsTr("Open previous session")
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pixelSize: Units.dp(16)
+                    }
+                }
+            }
+
+            ListItem.Standard {
+                text: ""
+                height: Units.dp(60)
                 MenuField {
                     id: menuSearchEngine
 

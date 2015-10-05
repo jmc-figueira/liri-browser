@@ -124,6 +124,31 @@ Rectangle {
             }
         }
 
+        IconButton {
+            id: recentMenu
+            iconName: "navigation/arrow_drop_down"
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            onClicked:
+                dumdum.open(omnibox, 0, omnibox.height)
+        }
+
+        Dropdown {
+            id : dumdum
+            width: omnibox.width
+            height: columnView.height + Units.dp(16)
+
+            ColumnLayout{
+                id: columnView
+                width: parent.width
+                anchors.centerIn: parent
+
+                ListItem.Standard {
+                    text: qsTr("Dummy")
+                }
+            }
+        }
+
     }
 
 }
