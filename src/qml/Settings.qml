@@ -10,7 +10,8 @@ Rectangle {
     id: settingsRoot
     anchors.fill: parent
     property bool mobileMode: width < Units.dp(640)
-    property string textColor: root.app.darkTheme ? Theme.dark.textColor : Theme.light.textColor
+    property color textColor: root.app.darkTheme ? Theme.dark.textColor : Theme.alpha(Theme.light.textColor,1)
+    property color linesColor: Theme.alpha(textColor, 0.6)
     color: root.app.darkTheme ? root.app.darkThemeColor : "white"
     z: -20
 
@@ -76,11 +77,6 @@ Rectangle {
                     id: txtHomeUrl
                     width: parent.width - 30
                     height: Units.dp(36)
-                    style: TextFieldStyle {
-                        selectionColor: theme.accentColor
-                        textColor: settingsRoot.textColor
-                        placeholderTextColor: settingsRoot.textColor
-                    }
                     anchors {
                       verticalCenter: parent.verticalCenter
                       left: parent.left
@@ -89,6 +85,10 @@ Rectangle {
                     text: root.app.homeUrl
                     placeholderText: qsTr("Start page")
                     floatingLabel: true
+                    style: TextFieldThemed {
+                        helperNotFocusedColor: settingsRoot.linesColor
+                        textColor: settingsRoot.textColor
+                    }
                 }
             }
 
@@ -141,9 +141,11 @@ Rectangle {
             ListItem.Standard {
                 text: ""
                 height: Units.dp(60)
-                MenuField {
+                MenuFieldThemed {
                     id: menuSearchEngine
-
+                    textColor: settingsRoot.textColor
+                    helperColor: Theme.accentColor
+                    linesColor: settingsRoot.linesColor
                     anchors {
                       verticalCenter: parent.verticalCenter
                       left: parent.left
@@ -383,13 +385,21 @@ Rectangle {
                 }
                 ExclusiveGroup { id: bookmarksOptionGroup }
                 Column {
-                    spacing: 0
+                    spacing: -Units.dp(10)
                     RadioButton {
                         id: rdBookmarksBarAlwaysOn
                         checked: root.app.bookmarksBarAlwaysOn
                         text: "Always on"
                         canToggle: true
+                        darkBackground: root.app.darkTheme
                         exclusiveGroup: bookmarksOptionGroup
+                        style: RadioButtonStyle {
+                            label: Label {
+                                    text: control.text
+                                    style: "button"
+                                    color: rdBookmarksBarAlwaysOn.checked ? settingsRoot.textColor : settingsRoot.linesColor
+                                 }
+                        }
                     }
 
                     RadioButton {
@@ -398,6 +408,14 @@ Rectangle {
                         checked: root.app.bookmarksBarOnlyOnDash
                         canToggle: true
                         exclusiveGroup: bookmarksOptionGroup
+                        style: RadioButtonStyle {
+                            label: Label {
+                                    text: control.text
+                                    style: "button"
+                                    color: rdBookmarksBarOnlyOnDash.checked ? settingsRoot.textColor : settingsRoot.linesColor
+                                   }
+                        }
+                        darkBackground: root.app.darkTheme
                     }
 
                     RadioButton {
@@ -406,6 +424,15 @@ Rectangle {
                         checked: !root.app.bookmarksBarOnlyOnDash && !root.app.bookmarksBarAlwaysOn
                         canToggle: true
                         exclusiveGroup: bookmarksOptionGroup
+                        style: RadioButtonStyle {
+                            label: Label {
+                                    text: control.text
+                                    style: "button"
+                                    color:  rdBookmarksBarNotOnDash.checked ? settingsRoot.textColor : settingsRoot.linesColor
+
+                            }
+                        }
+                        darkBackground: root.app.darkTheme
                     }
                 }
             }
@@ -452,7 +479,7 @@ Rectangle {
                 }
                 ExclusiveGroup { id: optionGroup }
                 Column {
-                    spacing: 0
+                    spacing: -Units.dp(10)
                     RadioButton {
                         id: rdDarkThemeAlwaysOn
                         checked: true
@@ -460,6 +487,13 @@ Rectangle {
                         darkBackground: root.app.darkTheme
                         canToggle: true
                         exclusiveGroup: optionGroup
+                        style: RadioButtonStyle {
+                            label: Label {
+                                    text: control.text
+                                    style: "button"
+                                    color: rdDarkThemeAlwaysOn.checked ? settingsRoot.textColor : settingsRoot.linesColor
+                            }
+                        }
                     }
 
                     RadioButton {
@@ -468,6 +502,13 @@ Rectangle {
                         darkBackground: root.app.darkTheme
                         canToggle: true
                         exclusiveGroup: optionGroup
+                        style: RadioButtonStyle {
+                            label: Label {
+                                    text: control.text
+                                    style: "button"
+                                    color: rdDarkThemeOnAtNight.checked ? settingsRoot.textColor : settingsRoot.linesColor
+                             }
+                        }
                     }
                 }
             }
@@ -520,8 +561,11 @@ Rectangle {
                   id: srcListItem
                   text: ""
                   height: Units.dp(60)
-                  MenuField {
+                  MenuFieldThemed {
                       id: menuSourceHighlightTheme
+                      textColor: settingsRoot.textColor
+                      helperColor: Theme.accentColor
+                      linesColor: settingsRoot.linesColor
                       anchors {
                         verticalCenter: parent.verticalCenter
                         left: parent.left
@@ -544,6 +588,55 @@ Rectangle {
                   anchors.bottomMargin: 30
               }
 
+            ListItem.Standard {
+                  id: srcFontItem
+                  text: ""
+                  height: Units.dp(60)
+                  MenuFieldThemed {
+                      id: menuSourceHighlightFont
+                      textColor: settingsRoot.textColor
+                      helperColor: Theme.accentColor
+                      linesColor: settingsRoot.linesColor
+                      anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        leftMargin: 15
+                      }
+                      property string selectedSourceHighlightFont: model[selectedIndex];
+                      width: parent.width - 20
+                      model: getListedSourceHighlightFonts()
+                      helperText: "Font for source-code viewing"
+
+                      function getListedSourceHighlightFonts() {
+                        if(root.app.sourceHighlightFont == "Roboto Mono")
+                            return ["Roboto Mono", "Hack"]
+                        else
+                            return ["Hack", "Roboto Mono"]
+                      }
+                  }
+              }
+
+            ListItem.Standard {
+                text: "Source code font size : " + slSourceHighlightFontSizePixel.value + "px"
+                height: Units.dp(60)
+                textColor: settingsRoot.textColor
+                Slider {
+                    id: slSourceHighlightFontSizePixel
+                    value: root.app.sourceHighlightFontPixelSize
+                    tickmarksEnabled: true
+                    stepSize: 1
+                    minimumValue: 8
+                    maximumValue: 18
+                    darkBackground: root.app.darkTheme
+                    anchors {
+                        right: parent.right
+                        top: parent.top
+                        topMargin: 20
+                        verticalCenter: parent.verticalCenter
+                    }
+                }
+            }
+
             ColorPicker {
                 id: primaryColorPicker
                 color: theme.primaryColor
@@ -553,28 +646,13 @@ Rectangle {
                 id: accentColorPicker
                 color: theme.accentColor
             }
-
-            Item {
-                height: Units.dp(60)
-                width: parent.width
-                Label {
-                    style: "title"
-                    text: qsTr("About")
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: settingsRoot.textColor
-                }
-            }
-
-            ListItem.Subheader {
-                Label {
-                    z: 20
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: qsTr("Current Browser Version: 0.3")
-                    color: settingsRoot.textColor
-                }
-            }
           }
        }
+    }
+    ScrollbarThemed {
+        flickableItem: flickable
+        color: settingsRoot.textColor
+        hideTime: 1000
     }
 
     View {
@@ -602,6 +680,8 @@ Rectangle {
                     root.app.homeUrl = txtHomeUrl.text;
                     root.app.searchEngine = menuSearchEngine.selectedEngine;
                     root.app.sourceHighlightTheme = menuSourceHighlightTheme.selectedSourceHighlightTheme;
+                    root.app.sourceHighlightFont = menuSourceHighlightFont.selectedSourceHighlightFont;
+                    root.app.sourceHighlightFontPixelSize = slSourceHighlightFontSizePixel.value
                     root.app.integratedAddressbars = chbIntegratedAddressbars.checked;
                     root.app.tabsEntirelyColorized = chbTabsEntirelyColorized.checked;
                     root.app.newTabPage = chbDashboard.checked;
@@ -630,6 +710,15 @@ Rectangle {
                     drawer.close();
                 }
             }
+        }
+        Label {
+            anchors {
+                verticalCenter: parent.verticalCenter
+                right: parent.right
+                margins: Units.dp(10)
+            }
+            text: qsTr("Version: 0.3")
+            color: settingsRoot.textColor
         }
     }
 
